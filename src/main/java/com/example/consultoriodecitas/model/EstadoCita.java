@@ -1,6 +1,6 @@
 package com.example.consultoriodecitas.model;
 
-public enum EstadodeCita {
+public enum EstadoCita {
 
     PROGRAMADA,
     CANCELADA

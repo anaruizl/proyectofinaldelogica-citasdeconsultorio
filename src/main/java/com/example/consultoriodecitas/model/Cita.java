@@ -7,9 +7,9 @@ public class Cita {
     private String DocumentoPaciente;
     private int IdMedico;
     private LocalDateTime FechaHora;
-    private EstadodeCita Estado;
+    private EstadoCita Estado;
 
-    public Cita(int Id, String DocumentoPaciente, int IdMedico, LocalDateTime FechaHora, EstadodeCita Estado) {
+    public Cita(int Id, String DocumentoPaciente, int IdMedico, LocalDateTime FechaHora, EstadoCita Estado) {
         this.Id = Id;
         this.DocumentoPaciente = DocumentoPaciente;
         this.IdMedico = IdMedico;
@@ -33,7 +33,7 @@ public class Cita {
         return FechaHora;
     }
 
-    public EstadodeCita getEstado() {
+    public EstadoCita getEstado() {
         return Estado;
     }
 
@@ -41,7 +41,7 @@ public class Cita {
         this.FechaHora = FechaHora;
     }
 
-    public void setEstado(EstadodeCita Estado) {
+    public void setEstado(EstadoCita Estado) {
         this.Estado = Estado;
     }
 }
