@@ -88,4 +88,22 @@ public class AlmacenArchivos {
             throw new UncheckedIOException("No se pudo escribir " + archivo, e);
         }
     }
+
+    public void GuardarPacientes(List<Paciente> pacientes) {
+        List<String> lineas = new ArrayList<>();
+        for (Paciente p : pacientes) {
+            lineas.add(String.join(";", p.getDocumento(), p.getNombre(), p.getTelefono(),
+                    p.getFechaDeNacimiento().toString()));
+        }
+        escribir(PACIENTES, lineas);
+    }
+
+    public List<Medico> leerMedicos() {
+        List<Medico> lista = new ArrayList<>();
+        for (String[] c : leerCampos(MEDICOS)) {
+            lista.add(new Medico(Integer.parseInt(c[0]), c[1], c[2]));
+        }
+        return lista;
+    }
+
 }
