@@ -1,6 +1,7 @@
 package com.example.consultoriodecitas.service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -9,6 +10,7 @@ import org.jetbrains.kotlin.com.intellij.openapi.components.Service;
 
 import com.example.consultoriodecitas.data.AlmacenArchivos;
 import com.example.consultoriodecitas.model.Cita;
+import com.example.consultoriodecitas.model.EstadoCita;
 import com.example.consultoriodecitas.model.Medico;
 import com.example.consultoriodecitas.model.Paciente;
 
@@ -41,7 +43,7 @@ public class consultorioServicios {
         citas = almacen.leerCitas();
     }
 
-    public List<Paciente> BuscarPaciente(String Documento) {
+    public List<Paciente> listarPacientes() {
         return new ArrayList<>(pacientes);
     }
 
@@ -66,4 +68,64 @@ public class consultorioServicios {
         pacientes.add(new Paciente(Documento.trim(), Nombre.trim(), Telefono.trim(), Nacimiento));
         almacen.GuardarPacientes(pacientes);
     }
+
+    public List<Medico> listarMedicos() {
+        return new ArrayList<>(medicos);
+
+    }
+    public Optional<Medico> BuscarMedico(int id) {
+        return medicos.stream().filter(m -> m.getId() == id).findFirst();
+    }
+
+    public List<Cita> listarCitas() {
+        return new ArrayList<>(citas);
+    }
+
+    public void AgendarCita(String documentoPaciente, int IdMedico, LocalDateTime FechaHora) {
+        if (BuscarPaciente(documentoPaciente).isEmpty()) {
+            throw new IllegalArgumentException("El paciente no está registrado en el sistema.");
+            
+        }
+        if (BuscarMedico(IdMedico).isEmpty()) {
+            throw new IllegalArgumentException("El medico no aparece registrado en el sistema");
+            
+        }
+        if (FechaHora == null || FechaHora.isBefore(LocalDateTime.now())) {
+            throw new IllegalArgumentException("La fecha y hora deben de estar proximas a dias siguientes.");
+
+        }
+        if (MedicoOcupado(IdMedico, FechaHora)) {
+            throw new IllegalArgumentException("El medico solicitado ya tiene una cita agendada a esta hora.");
+        }
+        citas.add(new Cita(SiguienteIdCit(), documentoPaciente, IdMedico, FechaHora, EstadoCita.PROGRAMADA));
+        almacen.guardarCitas(citas);
+    }
+    public void CancelarCita(int IdCita) {
+        Cita cita = citas.stream().filter(c -> c.getId() == IdCita).findFirst().orElseThrow(() -> new IllegalArgumentException("La cita no existe en el sistema."));
+        
+        if (cita.getEstado() == EstadoCita.CANCELADA) {
+            throw new IllegalArgumentException("La ciya ya se registraba en el sistema CANCELADA.");
+            
+        }
+        cita.setEstado(EstadoCita.CANCELADA);
+        almacen.guardarCitas(citas);
+    }
+
+    private boolean MedicoOcupado(int IdMedico, LocalDateTime FechaHora) {
+        return citas.stream().anyMatch(c -> c.getIdMedico() == IdMedico && c.getEstado() == EstadoCita.PROGRAMADA && c.getFechaHora().equals(FechaHora));
+    }
+
+    private int SiguienteIdCit() {
+        return citas.stream().mapToInt(Cita::getId).max().orElse(0) + 1;
+    }
+    private void validarTexto(String valor, String campo) {
+        if (valor == null || valor.isBlank()) {
+            throw new IllegalArgumentException(campo + " no puede estar vacio este espacio.");
+
+        }
+        if (valor.contains(";")) {
+            throw new IllegalArgumentException(campo + " no puede contener el simbolo ';'.");
+        }
+    }
+
 }
