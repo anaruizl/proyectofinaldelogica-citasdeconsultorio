@@ -14,8 +14,9 @@ public class MainLayout extends AppLayout {
         addToNavbar(new DrawerToggle(), titulo);
 
         VerticalLayout menu = new VerticalLayout(
-            new RouterLink("Inicio", InicioView.class), new RouterLink("Pacientes", PacientesView.class));
-            menu.addClassName("menu-lateral");
+
+            new RouterLink("Inicio", InicioView.class), new RouterLink("Pacientes", PacientesView.class), new  RouterLink("Agendar Cita", AgendarcitasView.class), new  RouterLink("Citas", CitasView.class));
+          
             addToDrawer(menu);
         
     }
