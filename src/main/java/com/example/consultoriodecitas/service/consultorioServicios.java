@@ -5,13 +5,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import org.jetbrains.kotlin.com.intellij.openapi.components.Service;
-
 import com.example.consultoriodecitas.data.AlmacenArchivos;
 import com.example.consultoriodecitas.model.Cita;
 import com.example.consultoriodecitas.model.EstadoCita;
 import com.example.consultoriodecitas.model.Medico;
+import org.springframework.stereotype.Service;
 import com.example.consultoriodecitas.model.Paciente;
 
 @Service

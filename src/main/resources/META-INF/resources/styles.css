@@ -1,0 +1,55 @@
+.Titulo-App {
+    font-size: var(--lumo-font-size-xl);
+    margin: 0;
+    padding: 0 var(--lumo-space-m);
+    color: var(--lumo-primary-text-color);
+}
+
+.Menu-Lateral {
+    gap: var(--lumo-space-s);
+    padding: var(--lumo-space-m);
+}
+
+.Menu-Lateral a {
+    display: block;
+    padding: var(--lumo-space-s) var(--lumo-space-m);
+    border-radius: var(--lumo-border-radius-m);
+    color: var(--lumo-body-text-color);
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.Manu-Lateral a:hover {
+    background-color: var(--lumo-primary-color-10pct);
+    color: var(--lumo-primary-text-color);
+}
+
+.Tarjeta {
+    background-color: var(--lumo-base-color);
+    border: 1px solid var(--lumo-contrast-10pct);
+    border-radius: var(--lumo-border-radius-l);
+    box-shadow: var(--lumo-box-shadow-s);
+    padding: var(--lumo-space-l);
+    max-width: 700px;
+    width: 100%;
+}
+
+.Boton-Guardar {
+    align-self: flex-start;
+    min-width: 160px;
+    border-radius: var(--lumo-border-radius-m);
+}
+
+.Tabla-Datos {
+    border: 1px solid var(--lumo-contrast-10pct);
+    border-radius: var(--lumo-border-radius-l);
+    box-shadow: var(--lumo-box-shadow-xs);
+    overflow: hidden;
+}
+
+H2 {
+    color: var(--lumo-primary-text-color);
+    font-size: var(--lumo-font-size-xl);
+    margin-bottom: var(--lumo-space-s);
+}

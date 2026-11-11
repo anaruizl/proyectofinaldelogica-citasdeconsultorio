@@ -32,3 +32,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Vaadin ###
+src/main/frontend/generated/
+src/main/bundles/
+vite.generated.ts

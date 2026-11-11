@@ -1,0 +1,9 @@
+1;Dra. Sandra Gallego;Medicina General
+2;Dra. Monica Zapata;Pediatria
+3;Dr. Yeferson Davila;Odontología
+4;Dr. Raul Humberto Escobar;Ortopedia
+5;Dra. Laura Gomez;Ginecología
+6;Dr. Carlos Rios;Hematologia
+7;Dra. Sofia Marin;Dermatologia
+8;Dr. Fabian Carmona;Cardiología
+9;Dra. Camila Tabares;Gatroenteología
