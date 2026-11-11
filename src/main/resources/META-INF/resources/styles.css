@@ -53,3 +53,56 @@ H2 {
     font-size: var(--lumo-font-size-xl);
     margin-bottom: var(--lumo-space-s);
 }
+
+.Agenda-Scroll {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.Agenda-Rango {
+    font-weight: 600;
+    padding: 0 var(--lumo-space-m);
+    align-self: center;
+}
+
+.Celda {
+    width: 130px;
+    min-height: 36px;
+    box-sizing: border-box;
+    border: 1px solid var(--lumo-contrast-10pct);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2px;
+    font-size: var(--lumo-font-size-xs);
+}
+
+.Celda-Hora {
+    width: 70px;
+}
+
+.Celda-Encabezado {
+    background-color: var(--lumo-contrast-5pct);
+    font-weight: 600;
+}
+
+.Celda-Libre {
+    cursor: pointer;
+    background-color: var(--lumo-success-color-10pct);
+    color: var(--lumo-secondary-text-color);
+}
+
+.Celda-Libre:hover {
+    background-color: var(--lumo-success-color-50pct);
+}
+
+.Celda-Ocupada {
+    background-color: var(--lumo-primary-color-10pct);
+    color: var(--lumo-primary-text-color);
+    font-weight: 500;
+}
+
+.Celda-Pasada {
+    background-color: var(--lumo-contrast-5pct);
+}

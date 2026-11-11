@@ -21,7 +21,7 @@ import com.vaadin.flow.router.Route;
 @PageTitle ("Citas")
 public class CitasView extends VerticalLayout{
     
-    private static final DateTimeFormatter Formato = DateTimeFormatter.ofPattern("DD/MM/YYY   HH:MM");
+    private static final DateTimeFormatter Formato = DateTimeFormatter.ofPattern("dd/MM/YYY   HH:MM");
 
     private final consultorioServicios servicio;
     private final Grid<Cita> Tabla = new Grid<>(Cita.class, false);

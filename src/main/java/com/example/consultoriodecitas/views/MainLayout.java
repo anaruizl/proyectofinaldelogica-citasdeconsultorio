@@ -15,7 +15,7 @@ public class MainLayout extends AppLayout {
 
         VerticalLayout menu = new VerticalLayout(
 
-            new RouterLink("Inicio", InicioView.class), new RouterLink("Pacientes", PacientesView.class), new  RouterLink("Agendar Cita", AgendarcitasView.class), new  RouterLink("Citas", CitasView.class));
+            new RouterLink("Inicio", InicioView.class), new RouterLink("Pacientes", PacientesView.class), new  RouterLink("Agendar Cita", AgendarcitasView.class), new  RouterLink("Citas", CitasView.class), new RouterLink("Agenda semanal", AgendaSemanaView.class));
           
             addToDrawer(menu);
         
