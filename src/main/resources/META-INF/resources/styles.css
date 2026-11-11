@@ -1,108 +1,460 @@
-.Titulo-App {
-    font-size: var(--lumo-font-size-xl);
-    margin: 0;
-    padding: 0 var(--lumo-space-m);
-    color: var(--lumo-primary-text-color);
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap");
+
+html {
+  --fuente: "Nunito", "Varela Round", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --azul: #2f6fb5;
+  --azul-oscuro: #1e3a5f;
+  --azul-claro: #dcebfa;
+  --azul-muy-claro: #eef5fc;
+  --fondo: #f3f8fd;
+  --texto-suave: #5b7186;
+  --borde: #d6e4f3;
+  --sombra: 0 4px 16px rgba(47, 111, 181, 0.08);
+
+  --lumo-font-family: var(--fuente);
+  --lumo-primary-color: #2f6fb5;
+  --lumo-primary-text-color: #2f6fb5;
+  --lumo-primary-color-50pct: rgba(47, 111, 181, 0.5);
+  --lumo-primary-color-10pct: rgba(47, 111, 181, 0.1);
+  --lumo-body-text-color: #1e3a5f;
+  --lumo-header-text-color: #1e3a5f;
+  --lumo-secondary-text-color: #5b7186;
+  --lumo-border-radius-m: 0.75rem;
+  --lumo-border-radius-l: 1.1rem;
 }
 
-.Menu-Lateral {
-    gap: var(--lumo-space-s);
-    padding: var(--lumo-space-m);
+body {
+  background-color: var(--fondo);
+  font-family: var(--fuente);
 }
 
-.Menu-Lateral a {
-    display: block;
-    padding: var(--lumo-space-s) var(--lumo-space-m);
-    border-radius: var(--lumo-border-radius-m);
-    color: var(--lumo-body-text-color);
-    font-weight: 500;
-    text-decoration: none;
-    transition: background-color 0.2s;
+h1, h2, h3 {
+  font-family: var(--fuente);
+  font-weight: 800;
+  color: var(--azul-oscuro);
 }
 
-.Manu-Lateral a:hover {
-    background-color: var(--lumo-primary-color-10pct);
-    color: var(--lumo-primary-text-color);
+h2 {
+  font-size: 1.5rem;
+  margin: 0 0 var(--lumo-space-m);
 }
 
-.Tarjeta {
-    background-color: var(--lumo-base-color);
-    border: 1px solid var(--lumo-contrast-10pct);
-    border-radius: var(--lumo-border-radius-l);
-    box-shadow: var(--lumo-box-shadow-s);
-    padding: var(--lumo-space-l);
-    max-width: 700px;
-    width: 100%;
+.titulo-app {
+  margin-left: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--azul-oscuro);
 }
 
-.Boton-Guardar {
-    align-self: flex-start;
-    min-width: 160px;
-    border-radius: var(--lumo-border-radius-m);
+.menu-lateral {
+  gap: 0.25rem;
+  padding: var(--lumo-space-m);
 }
 
-.Tabla-Datos {
-    border: 1px solid var(--lumo-contrast-10pct);
-    border-radius: var(--lumo-border-radius-l);
-    box-shadow: var(--lumo-box-shadow-xs);
-    overflow: hidden;
+.menu-lateral a {
+  display: block;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  color: var(--azul-oscuro);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s;
 }
 
-H2 {
-    color: var(--lumo-primary-text-color);
-    font-size: var(--lumo-font-size-xl);
-    margin-bottom: var(--lumo-space-s);
+.menu-lateral a:hover,
+.menu-lateral a[highlight] {
+  background-color: var(--azul-claro);
+  color: var(--azul);
 }
 
-.Agenda-Scroll {
-    overflow-x: auto;
-    width: 100%;
+
+.pagina {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  gap: 1.75rem;
 }
 
-.Agenda-Rango {
-    font-weight: 600;
-    padding: 0 var(--lumo-space-m);
-    align-self: center;
+.seccion {
+  width: 100%;
 }
 
-.Celda {
-    width: 130px;
-    min-height: 36px;
-    box-sizing: border-box;
-    border: 1px solid var(--lumo-contrast-10pct);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 2px;
-    font-size: var(--lumo-font-size-xs);
+.subtitulo,
+.texto-vacio {
+  color: var(--texto-suave);
 }
 
-.Celda-Hora {
-    width: 70px;
+.subtitulo {
+  margin: -0.5rem 0 0;
 }
 
-.Celda-Encabezado {
-    background-color: var(--lumo-contrast-5pct);
-    font-weight: 600;
+
+.tarjeta {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 700px;
+  padding: var(--lumo-space-l);
+  background-color: #fff;
+  border: 1px solid var(--borde);
+  border-radius: 20px;
+  box-shadow: var(--sombra);
 }
 
-.Celda-Libre {
-    cursor: pointer;
-    background-color: var(--lumo-success-color-10pct);
-    color: var(--lumo-secondary-text-color);
+.boton-guardar {
+  align-self: flex-start;
+  min-width: 160px;
+  border-radius: 999px;
 }
 
-.Celda-Libre:hover {
-    background-color: var(--lumo-success-color-50pct);
+.tabla-datos {
+  border: 1px solid var(--borde);
+  border-radius: 20px;
+  box-shadow: var(--sombra);
+  overflow: hidden;
 }
 
-.Celda-Ocupada {
-    background-color: var(--lumo-primary-color-10pct);
-    color: var(--lumo-primary-text-color);
-    font-weight: 500;
+/* ===== Botones tipo píldora ===== */
+.boton {
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.2s;
 }
 
-.Celda-Pasada {
-    background-color: var(--lumo-contrast-5pct);
+.boton-principal {
+  background-color: var(--azul);
+  color: #fff;
+}
+
+.boton-principal:hover {
+  background-color: #255a96;
+}
+
+.boton-suave {
+  background-color: var(--azul-claro);
+  color: var(--azul-oscuro);
+}
+
+.boton-suave:hover {
+  background-color: #c8dff5;
+}
+
+
+.portada {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  padding: 2rem;
+  background-color: #fff;
+  border: 1px solid var(--borde);
+  border-radius: 28px;
+  box-shadow: var(--sombra);
+}
+
+.portada-titulo {
+  margin: 0 0 0.75rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+}
+
+.portada-texto {
+  max-width: 48ch;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--texto-suave);
+}
+
+.portada-botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.portada-imagen {
+  min-height: 280px;
+  border-radius: 22px;
+  background-color: var(--azul-claro);
+  background-image:
+    linear-gradient(rgba(220, 235, 250, 0.15), rgba(220, 235, 250, 0.15)),
+    url("images/hero.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 800px) {
+  .portada {
+    grid-template-columns: 1fr;
+  }
+  .portada-imagen {
+    order: -1;
+    min-height: 200px;
+  }
+}
+
+
+.info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.info-tarjeta {
+  padding: 1.5rem;
+  background-color: var(--azul-muy-claro);
+  border: 1px solid var(--borde);
+  border-radius: 20px;
+}
+
+.info-titulo {
+  margin-bottom: 0.5rem;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.info-texto {
+  line-height: 1.6;
+  color: var(--texto-suave);
+}
+
+.pasos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.paso {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem;
+  background-color: #fff;
+  border: 1px solid var(--borde);
+  border-radius: 20px;
+}
+
+.paso-numero {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--azul);
+  color: #fff;
+  font-weight: 800;
+}
+
+.paso-titulo {
+  font-weight: 800;
+}
+
+.paso-texto {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--texto-suave);
+}
+
+.numeros {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 1rem;
+}
+
+.numero-tarjeta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem;
+  background-color: var(--azul-claro);
+  border-radius: 20px;
+}
+
+.numero-valor {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--azul);
+}
+
+.numero-etiqueta {
+  font-weight: 600;
+  color: var(--azul-oscuro);
+}
+
+/* ===== Inicio: equipo médico ===== */
+.medicos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.75rem;
+}
+
+.medico {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #fff;
+  border: 1px solid var(--borde);
+  border-radius: 20px;
+}
+
+.medico-avatar {
+  flex: none;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--azul-claro);
+  color: var(--azul);
+  font-weight: 800;
+}
+
+.medico-nombre {
+  font-weight: 700;
+}
+
+.medico-especialidad {
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+}
+
+
+.agenda-barra,
+.agenda-tarjeta {
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid var(--borde);
+  border-radius: 20px;
+  box-shadow: var(--sombra);
+}
+
+.agenda-barra {
+  padding: 1rem 1.25rem;
+}
+
+.agenda-tarjeta {
+  padding: 1rem;
+}
+
+.agenda-rango {
+  padding: 0 var(--lumo-space-m);
+  font-weight: 800;
+  color: var(--azul-oscuro);
+}
+
+.agenda-leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+}
+
+.leyenda-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.leyenda-punto {
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--borde);
+  border-radius: 50%;
+}
+
+.leyenda-libre { background-color: #fff; }
+.leyenda-ocupada { background-color: #9ec5ec; }
+.leyenda-pasada { background-color: #e9eef4; }
+
+.agenda-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.agenda-matriz {
+  min-width: 780px;
+  gap: 6px;
+}
+
+.agenda-fila {
+  width: 100%;
+  gap: 6px;
+}
+
+.celda {
+  flex: 1 1 0;
+  min-width: 110px;
+  min-height: 38px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.celda-hora {
+  flex: 0 0 64px;
+  min-width: 64px;
+  font-weight: 700;
+  color: var(--texto-suave);
+}
+
+.hora-suave {
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.celda-encabezado {
+  min-height: 54px;
+  flex-direction: column;
+  background-color: var(--azul-muy-claro);
+  color: var(--azul-oscuro);
+}
+
+.dia-nombre { font-weight: 800; }
+.dia-fecha { font-size: 0.75rem; color: var(--texto-suave); }
+
+.celda-hoy {
+  background-color: var(--azul);
+  color: #fff;
+}
+
+.celda-hoy .dia-fecha {
+  color: #e6f0fb;
+}
+
+.celda-libre {
+  background-color: #fff;
+  border: 1px dashed var(--borde);
+  color: var(--texto-suave);
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.celda-libre:hover {
+  background-color: var(--azul-claro);
+  border: 1px solid var(--azul);
+  color: var(--azul-oscuro);
+}
+
+.celda-ocupada {
+  background-color: #9ec5ec;
+  color: var(--azul-oscuro);
+  font-weight: 700;
+}
+
+.celda-pasada {
+  background-color: #eef2f6;
 }

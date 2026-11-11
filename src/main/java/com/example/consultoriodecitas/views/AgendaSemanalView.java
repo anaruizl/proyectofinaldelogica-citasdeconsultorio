@@ -20,6 +20,7 @@ import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
@@ -32,7 +33,7 @@ import com.vaadin.flow.router.Route;
 
 @Route(value = "agenda", layout = MainLayout.class)
 @PageTitle("Agenda semanal")
-public class AgendaSemanaView extends VerticalLayout {
+public class AgendaSemanalView extends VerticalLayout {
 
     private static final LocalTime INICIO = LocalTime.of(8, 0);
     private static final LocalTime FIN = LocalTime.of(18, 0);
@@ -46,8 +47,10 @@ public class AgendaSemanaView extends VerticalLayout {
     private final VerticalLayout matriz = new VerticalLayout();
     private LocalDate lunes;
 
-    public AgendaSemanaView(consultorioServicios servicio) {
+    public AgendaSemanalView(consultorioServicios servicio) {
         this.servicio = servicio;
+        addClassName("pagina");
+        setSpacing(false);
 
         LocalDate hoy = LocalDate.now();
         lunes = hoy.getDayOfWeek() == DayOfWeek.SUNDAY
@@ -72,13 +75,18 @@ public class AgendaSemanaView extends VerticalLayout {
         HorizontalLayout barra = new HorizontalLayout(medico, anterior, rangoSemana, siguiente);
         barra.setAlignItems(FlexComponent.Alignment.END);
         barra.setWrap(true);
+        barra.addClassName("agenda-barra");
 
         matriz.setSpacing(false);
         matriz.setPadding(false);
+        matriz.addClassName("agenda-matriz");
         Div contenedor = new Div(matriz);
-        contenedor.addClassName("agenda-scroll");
+        contenedor.addClassNames("agenda-scroll", "agenda-tarjeta");
 
-        add(new H2("Agenda semanal"), barra, contenedor);
+        Paragraph subtitulo = new Paragraph("Elige un médico y haz clic en un horario libre para agendar la cita.");
+        subtitulo.addClassName("subtitulo");
+
+        add(new H2("Agenda semanal"), subtitulo, barra, crearLeyenda(), contenedor);
         construirMatriz();
     }
 
@@ -88,7 +96,9 @@ public class AgendaSemanaView extends VerticalLayout {
 
         Medico elegido = medico.getValue();
         if (elegido == null) {
-            matriz.add(new Span("Selecciona un médico para ver su agenda."));
+            Span vacio = new Span("Selecciona un médico para ver su agenda.");
+            vacio.addClassName("texto-vacio");
+            matriz.add(vacio);
             return;
         }
 
@@ -97,17 +107,30 @@ public class AgendaSemanaView extends VerticalLayout {
                         && c.getEstado() == EstadoCita.PROGRAMADA)
                 .toList();
 
+        
         HorizontalLayout encabezado = crearFila();
-        encabezado.add(crearCelda("", "celda-hora", "celda-encabezado"));
+        encabezado.add(crearCelda("", "celda-hora"));
         for (int d = 0; d < DIAS.length; d++) {
-            String titulo = DIAS[d] + " " + lunes.plusDays(d).format(FORMATO_DIA);
-            encabezado.add(crearCelda(titulo, "celda-encabezado"));
+            LocalDate dia = lunes.plusDays(d);
+            Div cabecera = new Div();
+            cabecera.addClassNames("celda", "celda-encabezado");
+            Span nombreDia = new Span(DIAS[d]);
+            nombreDia.addClassName("dia-nombre");
+            Span fechaDia = new Span(dia.format(FORMATO_DIA));
+            fechaDia.addClassName("dia-fecha");
+            cabecera.add(nombreDia, fechaDia);
+            if (dia.equals(LocalDate.now())) {
+                cabecera.addClassName("celda-hoy");
+            }
+            encabezado.add(cabecera);
         }
         matriz.add(encabezado);
 
+        // Una fila por cada franja de 30 minutos
         for (LocalTime hora = INICIO; hora.isBefore(FIN); hora = hora.plusMinutes(30)) {
             HorizontalLayout fila = crearFila();
-            fila.add(crearCelda(hora.toString(), "celda-hora", "celda-encabezado"));
+            fila.add(crearCelda(hora.toString(), "celda-hora",
+                    hora.getMinute() == 0 ? "hora-fuerte" : "hora-suave"));
 
             for (int d = 0; d < DIAS.length; d++) {
                 LocalDateTime fechaHora = LocalDateTime.of(lunes.plusDays(d), hora);
@@ -174,10 +197,28 @@ public class AgendaSemanaView extends VerticalLayout {
         dialogo.open();
     }
 
+    private Div crearLeyenda() {
+        Div leyenda = new Div(
+                crearItemLeyenda("leyenda-libre", "Libre"),
+                crearItemLeyenda("leyenda-ocupada", "Ocupada"),
+                crearItemLeyenda("leyenda-pasada", "Hora pasada"));
+        leyenda.addClassName("agenda-leyenda");
+        return leyenda;
+    }
+
+    private Div crearItemLeyenda(String claseColor, String etiqueta) {
+        Div punto = new Div();
+        punto.addClassNames("leyenda-punto", claseColor);
+        Div item = new Div(punto, new Span(etiqueta));
+        item.addClassName("leyenda-item");
+        return item;
+    }
+
     private HorizontalLayout crearFila() {
         HorizontalLayout fila = new HorizontalLayout();
         fila.setSpacing(false);
         fila.setPadding(false);
+        fila.addClassName("agenda-fila");
         return fila;
     }
 
